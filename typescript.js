@@ -2,8 +2,8 @@ var canvas;
 var ctx;
 var railWayPath = /** @class */ (function () {
     function railWayPath(a, b, x, y, color, linewidth) {
-        if (color === void 0) { color = 'white'; }
-        if (linewidth === void 0) { linewidth = 5; }
+        if (color === void 0) { color = 'Grey'; }
+        if (linewidth === void 0) { linewidth = 10; }
         var _this = this;
         this.x = 0;
         this.y = 0;
@@ -25,12 +25,22 @@ var railWayPath = /** @class */ (function () {
             for (var i = 80; i < 1280; i += 80) {
                 ctx.save();
                 ctx.beginPath();
-                ctx.strokeStyle = "#808000";
-                ctx.lineWidth = _this.lineWidth;
+                ctx.strokeStyle = "DimGrey";
+                ctx.lineWidth = 15;
                 ctx.moveTo(i, 430);
                 ctx.lineTo(i, 280);
                 ctx.stroke();
                 ctx.lineCap = 'round';
+                for (var j = 80; j < 1280; j += 80) {
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.strokeStyle = "black";
+                    ctx.lineWidth = 3;
+                    ctx.moveTo(i, 430);
+                    ctx.lineTo(i, 280);
+                    ctx.stroke();
+                    ctx.lineCap = 'round';
+                }
             }
         };
         this.x = x;
@@ -42,37 +52,24 @@ var railWayPath = /** @class */ (function () {
     }
     return railWayPath;
 }());
-// for (let i:number = 80; i < 1280; i += 80){
-//     ctx.beginPath();
-//     ctx.strokeStyle = "#808000";
-//     ctx.lineWidth = 5;
-//     ctx.moveTo(i, 430);
-//     ctx.lineTo(i,280);
-//     ctx.stroke();
-// }
 var railWayPath1 = new railWayPath(0, 400, 1280, 400);
+var railWayPath11 = new railWayPath(0, 407, 1280, 407, "black", 5);
 var railWayPath2 = new railWayPath(0, 300, 1280, 300);
+var railWayPath22 = new railWayPath(0, 307, 1280, 307, "black", 5);
 var railWayPath3 = new railWayPath(0, 0, 0, 0);
-// var railWayPath3: railWayPath = new railWayPath( 80, 430, 80, 280, "#808000");
-// var railWayPath4: railWayPath = new railWayPath(160, 430, 160, 280, "#808000");
-// var railWayPath5: railWayPath = new railWayPath(240, 430, 240, 280, "#808000");
-// var railWayPath6: railWayPath = new railWayPath(320, 430, 320, 280,  "#808000");
-// var railWayPath7: railWayPath = new railWayPath(400, 430, 400, 280, "#808000");
-// var railWayPath8: railWayPath = new railWayPath(480, 430, 480, 280, "#808000");
-// var railWayPath9: railWayPath = new railWayPath(560, 430, 560, 280,  "#808000");
 function gameLoop() {
     requestAnimationFrame(gameLoop);
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "Silver";
     ctx.fillRect(0, 0, 1280, 720);
-    railWayPath1.draw();
-    railWayPath2.draw();
+    ctx.shadowOffsetX = 10;
+    ctx.shadowOffsetY = 10;
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = "black";
     railWayPath3.drawVertical();
-    //    railWayPath4.draw();
-    //    railWayPath5.draw();
-    //    railWayPath6.draw();
-    //    railWayPath7.draw();
-    //    railWayPath8.draw();
-    //    railWayPath9.draw();
+    railWayPath1.draw();
+    railWayPath11.draw();
+    railWayPath2.draw();
+    railWayPath22.draw();
 }
 window.onload = function () {
     canvas = document.getElementById('cnvs');
